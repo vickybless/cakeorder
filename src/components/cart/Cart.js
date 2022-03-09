@@ -1,5 +1,5 @@
-import react, { useContext } from "react";
-import { Modal, ModalFooter } from "react-bootstrap";
+import { useContext } from "react";
+import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import CartContext from "../store/cart-context";
 import CartItem from "./CartItem";
@@ -8,11 +8,23 @@ const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
-  const hasItems = cartCtx.items.length > 0;
+  const hasItems = cartCtx.items.lenght > 0;
+
+  const cartItemRemoveHandler = (id) => {};
+  //this is to Add items to the cart.
+  const cartItemAddhandler = (item) => {};
   const cartItems = (
     <ul>
       {cartCtx.items.map((item) => (
-        <li>{item.name}</li>
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          //(.bind) method helps the functions receive, "the arguments "the function will receive, which in this case are the: (id and item respectively.)
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddhandler.bind(null, item)}
+        />
       ))}
     </ul>
   );

@@ -8,7 +8,7 @@ const CartItems = (props) => {
         <h2>{props.name}</h2>
         <div>
           <span>{price}</span>
-          <span> x {price.amount}</span>
+          <span> x {props.amount}</span>
         </div>
       </div>
       <div>
